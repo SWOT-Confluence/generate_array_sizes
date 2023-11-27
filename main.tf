@@ -1,4 +1,7 @@
 terraform {
+  backend "s3" {
+    encrypt = true
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -13,6 +16,7 @@ provider "aws" {
     tags = local.default_tags
   }
   region = var.aws_region
+  profile = var.profile
 }
 
 # Data sources
@@ -45,13 +49,13 @@ data "aws_subnets" "private_application_subnets" {
   }
   filter {
     name   = "tag:Name"
-    values = ["private-subnet*"]
+    values = ["${var.prefix}-subnet-b", "${var.prefix}-subnet-c", "${var.prefix}-subnet-d"]
   }
 }
 
 data "aws_vpc" "application_vpc" {
   tags = {
-    "Name" : "confluence"
+    "Name" : "${var.prefix}"
   }
 }
 

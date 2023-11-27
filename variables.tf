@@ -29,5 +29,9 @@ variable "fsap_id" {
 variable "prefix" {
   type        = string
   description = "Prefix to add to all AWS resources as a unique identifier"
-  default     = "confluence"
+}
+
+variable "profile" {
+  type        = string
+  description = "Named profile to build infrastructure with"
 }

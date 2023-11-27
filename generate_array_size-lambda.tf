@@ -102,8 +102,8 @@ resource "aws_iam_policy" "aws_lambda_execution_policy" {
           "states:SendTaskFailure",
           "states:SendTaskSuccess"
         ],
-        "Resource" : "arn:aws:states:${var.aws_region}:${local.account_id}:stateMachine:confluence-workflow"
-      },
+        "Resource" : "arn:aws:states:${var.aws_region}:${local.account_id}:stateMachine:${var.prefix}-workflow"
+      }
     ]
   })
 }
