@@ -46,7 +46,8 @@ def generate_array_size_handler(event, context):
     
     # Determine if any continents were left out, adjust continent.json, and send result back
     get_continent_data(data_dict)
-    print("Located and determined continent array sizes.")
+    print("Located and determined continent array sizes.")    
+    print(f"Sizes: {data_dict}")
             
     # Send success response
     sf = boto3.client("stepfunctions")
